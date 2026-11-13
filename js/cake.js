@@ -7,7 +7,7 @@
 (function () {
   const G = window.GIFT || {};
   const C = G.cake || {};
-  const stage = document.getElementById("cake");
+  const stage = document.getElementById("cakeArt");
   if (!stage) return;
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 

@@ -6,7 +6,7 @@
 (function () {
   const SPARK = '<path d="M12 0C12.6 8 16 11.4 24 12 16 12.6 12.6 16 12 24 11.4 16 8 12.6 0 12 8 11.4 11.4 8 12 0Z"/>';
   const SHARD = '<path d="M20 2C34 22 34 58 20 78 6 58 6 22 20 2Z"/><path d="M20 2V78"/>';
-  const sections = ["home", "memories", "letters", "flowers", "song", "puzzle", "surprise"];
+  const sections = ["cake", "memories", "letters", "flowers", "song", "puzzle", "surprise"];
 
   sections.forEach((id, i) => {
     const sec = document.getElementById(id);
