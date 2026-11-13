@@ -1723,3 +1723,132 @@ html, body { background: #080E22; }
   .crystal__shard--2, .crystal__spark--2, .crystal__spark--3 { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .crystal__bloom, .crystal__shard, .crystal__spark { animation: none; } }
+
+/* ==========================================================================
+   LETTERS — spaced-caps title, even 3 + 2 grid of glass cards,
+   pearl envelopes with wax seals and blue "20" stamps
+   ========================================================================== */
+.letters { padding-top: clamp(96px, 8vw, 116px); }
+.letters-head { display: flex; flex-direction: column; align-items: center; margin-bottom: clamp(26px, 3vw, 36px); }
+.letters-head__star { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.letters-head__star::before, .letters-head__star::after { content: ""; width: 56px; height: 1px; background: linear-gradient(90deg, transparent, rgba(237, 244, 255, .55)); }
+.letters-head__star::after { transform: scaleX(-1); }
+.letters-head__star i {
+  width: 20px; height: 20px; background: #EDF4FF; filter: drop-shadow(0 0 8px #A9DFFF);
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+}
+.letters-head__row { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 3vw, 44px); width: 100%; }
+.letters-head__line { flex: 0 1 230px; height: 1px; background: linear-gradient(90deg, transparent, rgba(237, 244, 255, .5)); }
+.letters-head__line:last-child { transform: scaleX(-1); }
+.letters-head__title {
+  margin: 0; padding-left: .16em; /* balances the trailing letter-spacing */
+  font-family: var(--display); font-weight: 500; font-size: clamp(40px, 4.2vw, 60px); line-height: 1; letter-spacing: .16em; text-transform: uppercase;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDF4FF 55%, #C9D4F2 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px rgba(169, 223, 255, .35));
+}
+.letters-head__sub {
+  margin: 12px 0 0; padding-left: .5em;
+  font-family: var(--sans); font-size: 13px; font-weight: 400; letter-spacing: .5em; text-transform: uppercase; color: rgba(237, 244, 255, .82);
+}
+
+/* even grid: 3 on top, 2 centred underneath, every card the same size */
+.envelopes {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 1fr;
+  gap: clamp(22px, 2.4vw, 30px) clamp(24px, 3vw, 38px); max-width: 1140px; margin: 0 auto;
+}
+.env-wrap { grid-column: span 2; width: auto; display: flex; flex-direction: column; padding: 24px clamp(28px, 3vw, 46px) 22px; border-radius: 30px; }
+.envelopes .env-wrap:nth-child(4) { grid-column: 2 / span 2; }
+.env-wrap:nth-child(3n+2), .env-wrap:nth-child(3n+2).reveal.in { transform: none; }
+.env-wrap:nth-child(3n+2).reveal { transform: translateY(32px); }
+
+/* the card: dark glass, bright icy rim, lavender light from the lower left */
+.env-wrap {
+  background:
+    radial-gradient(ellipse 60% 45% at 0% 100%, rgba(183, 168, 255, .3), transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(169, 223, 255, .1), transparent 70%),
+    linear-gradient(160deg, rgba(30, 48, 100, .62), rgba(12, 20, 50, .72) 55%, rgba(26, 36, 86, .6));
+  border: 1px solid rgba(169, 223, 255, .55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 0 0 1px rgba(255, 255, 255, .05), inset 0 0 30px rgba(169, 223, 255, .08),
+    0 0 22px rgba(120, 170, 255, .28), 0 30px 60px -30px rgba(2, 5, 20, .9);
+}
+@media (hover: hover) {
+  .env-wrap:hover {
+    background:
+      radial-gradient(ellipse 60% 45% at 0% 100%, rgba(183, 168, 255, .36), transparent 70%),
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(169, 223, 255, .16), transparent 70%),
+      linear-gradient(160deg, rgba(34, 54, 112, .66), rgba(14, 24, 58, .74) 55%, rgba(30, 40, 96, .62));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 0 30px rgba(169, 223, 255, .1), 0 0 34px rgba(120, 170, 255, .45), 0 30px 60px -30px rgba(2, 5, 20, .9);
+  }
+}
+
+/* envelope: wide pearl paper */
+.env { aspect-ratio: 1.75; }
+.env-wrap:nth-child(1) .env { --accent: #B0245F; }
+.env-wrap:nth-child(2) .env { --accent: #2348B8; }
+.env-wrap:nth-child(3) .env { --accent: #6B2E9E; }
+.env-wrap:nth-child(4) .env { --accent: #2348B8; }
+.env-wrap:nth-child(5) .env { --accent: #C2307A; }
+.env__back { background: linear-gradient(160deg, #E4E6F6, #CDD1EC); box-shadow: 0 0 26px rgba(200, 215, 255, .28), 0 22px 34px -18px rgba(2, 5, 20, .8); border-radius: 8px; }
+.env__front {
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse 60% 70% at 25% 85%, rgba(183, 168, 255, .22), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 85% 70%, rgba(169, 223, 255, .2), transparent 70%),
+    linear-gradient(125deg, rgba(255, 255, 255, .8), transparent 45%),
+    linear-gradient(165deg, #FFFFFF 0%, #EEF0FB 50%, #DADDF2 100%);
+  box-shadow: inset 0 0 0 1px rgba(120, 130, 200, .2);
+}
+.env__front::after {
+  background: linear-gradient(to top right, transparent 49.6%, rgba(120, 125, 190, .28) 50%, transparent 50.6%), linear-gradient(to top left, transparent 49.6%, rgba(120, 125, 190, .28) 50%, transparent 50.6%);
+}
+.env__flap::before { border-radius: 8px 8px 0 0; background: linear-gradient(180deg, #F8F8FE, #DFE2F4); filter: drop-shadow(0 3px 5px rgba(60, 70, 140, .25)); }
+
+/* wax seal */
+.seal {
+  top: 54%; width: 58px; height: 58px;
+  font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: 0; color: #FFFFFF; text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+  background: radial-gradient(circle at 34% 28%, color-mix(in srgb, var(--accent) 45%, #fff), var(--accent) 46%, color-mix(in srgb, var(--accent) 55%, #000) 100%);
+  box-shadow:
+    inset 0 0 0 4px color-mix(in srgb, var(--accent) 80%, #000), inset 0 0 0 5px rgba(255, 255, 255, .25), inset 0 -4px 8px rgba(0, 0, 0, .25),
+    0 0 0 2px color-mix(in srgb, var(--accent) 70%, #000), 0 5px 10px rgba(0, 0, 0, .35), 0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* stamp: royal blue with a white border and tiny stars */
+.env__stamp {
+  top: 8%; right: 6%; width: 44px; height: 52px; transform: rotate(4deg);
+  font-family: var(--display); font-weight: 700; font-size: 19px; color: #FFFFFF;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, .25), transparent 60%), linear-gradient(160deg, #3D66DA, #1C3797);
+  outline: 1px dashed rgba(255, 255, 255, .55); outline-offset: -5px;
+  box-shadow: 0 0 0 3px #F4F6FC, 0 0 0 4px rgba(40, 55, 110, .25), 0 4px 10px rgba(2, 5, 25, .35);
+}
+.env__stamp::before, .env__stamp::after { content: "\2726"; position: absolute; left: 50%; transform: translateX(-50%); font-size: 7px; line-height: 1; color: rgba(255, 255, 255, .9); }
+.env__stamp::before { top: 6px; }
+.env__stamp::after { bottom: 6px; }
+
+/* labels under the envelope */
+.env__meta { margin-top: 18px; }
+.env__no, .env-wrap:nth-child(even) .env__no {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .32em; color: rgba(237, 244, 255, .85);
+}
+.env__no::before, .env__no::after { content: ""; flex: 0 1 64px; height: 1px; background: linear-gradient(90deg, transparent, rgba(237, 244, 255, .5)); }
+.env__no::after { transform: scaleX(-1); }
+.env__title { margin-top: 8px; font-size: clamp(20px, 1.7vw, 23px); font-weight: 500; line-height: 1.15; color: #FFFFFF; }
+.env__status {
+  margin-top: 12px; padding: 5px 16px; font-family: var(--sans); font-size: 10.5px; font-weight: 600; letter-spacing: .18em; color: #EDF4FF;
+  background: rgba(8, 14, 34, .45); border: 1px solid rgba(169, 223, 255, .45);
+}
+
+/* tablet: two across, the fifth centred */
+@media (max-width: 1024px) {
+  .envelopes { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 760px; }
+  .envelopes .env-wrap:nth-child(4) { grid-column: span 2; }
+  .envelopes .env-wrap:nth-child(5) { grid-column: 2 / span 2; }
+}
+/* phone: one column */
+@media (max-width: 640px) {
+  .envelopes { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; max-width: 380px; }
+  .envelopes .env-wrap, .envelopes .env-wrap:nth-child(4), .envelopes .env-wrap:nth-child(5) { grid-column: 1; }
+  .letters-head__line { flex-basis: 40px; }
+  .letters-head__sub { letter-spacing: .34em; font-size: 11px; }
+}
