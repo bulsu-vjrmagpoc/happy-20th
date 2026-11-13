@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy 20th Birthday</title>
+  <meta name="theme-color" content="#0E1430">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23F2A7BD'/%3E%3Cstop offset='1' stop-color='%239CC8FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%231B2350'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='32' text-anchor='middle' fill='url(%23g)'%3E20%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Sora:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,600&family=Pinyon+Script&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=4">
+</head>
+<body class="is-locked">
+
+  <!-- dreamy fixed backdrop shared by every section -->
+  <div class="sky" aria-hidden="true">
+    <i class="sky__orb sky__orb--a"></i>
+    <i class="sky__orb sky__orb--b"></i>
+    <i class="sky__orb sky__orb--c"></i>
+    <i class="sky__orb sky__orb--d"></i>
+    <div class="sky__grid"></div>
+    <svg class="sky__lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <circle cx="1180" cy="170" r="260"/><circle cx="1180" cy="170" r="190" stroke-dasharray="2 8"/>
+      <circle cx="220" cy="760" r="320"/><circle cx="220" cy="760" r="120" stroke-dasharray="2 8"/>
+      <path d="M0 170H1440M1180 0V900M220 0V900M0 760H1440M900 0L1440 540M0 420L520 900"/>
+      <path d="M1170 170h20M1180 160v20M210 760h20M220 750v20" class="sky__cross"/>
+    </svg>
+    <div class="sky__bokeh"></div>
+    <div class="sky__motes" id="skyMotes"></div>
+  </div>
+
+  <!-- ============ LOADING SCREEN ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__num">20</div>
+    <div class="loader__bar"><i id="loaderBar"></i></div>
+    <p class="loader__text">Getting your surprise ready…</p>
+  </div>
+
+  <!-- effects layer (confetti bursts, petals, cursor sparkles) -->
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- ============ LANDING ============ -->
+  <section id="intro" class="intro" aria-label="Opening">
+    <canvas id="introConfetti" class="intro__confetti" aria-hidden="true"></canvas>
+    <div class="intro__glow intro__glow--red" aria-hidden="true"></div>
+    <div class="intro__glow intro__glow--blue" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <svg class="ribbon ribbon--l" viewBox="0 0 200 600" aria-hidden="true"><path d="M150 -10 C 40 80, 190 170, 80 260 S 150 430, 40 520 S 120 600, 90 640"/></svg>
+    <svg class="ribbon ribbon--r" viewBox="0 0 200 600" aria-hidden="true"><path d="M50 -10 C 160 90, 10 180, 120 270 S 40 440, 160 530 S 80 600, 110 640"/></svg>
+
+    <div class="holo holo--intro" data-holo="guides" aria-hidden="true"></div>
+
+    <!-- shared gradients for the celebration ornaments -->
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="gStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9FDFF"/><stop offset=".35" stop-color="#7FEFFF"/><stop offset=".7" stop-color="#A98BFF"/><stop offset="1" stop-color="#6E9BFF"/></linearGradient>
+        <radialGradient id="gBalChrome" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".25" stop-color="#D7E6FF"/><stop offset=".6" stop-color="#7E9CD8"/><stop offset="1" stop-color="#2D3E7A"/></radialGradient>
+        <radialGradient id="gBalViolet" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#F2EDFF"/><stop offset=".3" stop-color="#A98BFF"/><stop offset=".7" stop-color="#5B4BD6"/><stop offset="1" stop-color="#241E66"/></radialGradient>
+        <radialGradient id="gBalCherry" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFE3EA"/><stop offset=".3" stop-color="#E0587C"/><stop offset=".7" stop-color="#A8264A"/><stop offset="1" stop-color="#4E0F25"/></radialGradient>
+        <linearGradient id="gRibbon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6FE7FF" stop-opacity="0"/><stop offset=".3" stop-color="#6FE7FF"/><stop offset=".7" stop-color="#9B7BFF"/><stop offset="1" stop-color="#9B7BFF" stop-opacity="0"/></linearGradient>
+      </defs>
+    </svg>
+
+    <!-- ============ FULL-SCREEN BIRTHDAY CALENDAR ============ -->
+    <div class="cal-wrap" role="group" aria-label="Birthday calendar, November 2026">
+      <div class="cal-deco" aria-hidden="true">
+        <svg class="deco-ribbon" viewBox="0 0 260 160"><path d="M4 150 C 40 60, 90 150, 120 80 S 190 10, 256 30"/></svg>
+        <svg class="deco-balloon deco-balloon--a" viewBox="0 0 60 130"><ellipse cx="30" cy="34" rx="24" ry="30" fill="url(#gBalChrome)"/><path d="M26 63l4 6 4-6z" fill="#7E9CD8"/><ellipse cx="21" cy="22" rx="5" ry="10" fill="#fff" opacity=".55" transform="rotate(-18 21 22)"/><path class="deco-string" d="M30 69c-7 14 7 24-1 36s6 16 1 24"/></svg>
+        <svg class="deco-balloon deco-balloon--b" viewBox="0 0 60 130"><ellipse cx="30" cy="34" rx="24" ry="30" fill="url(#gBalViolet)"/><path d="M26 63l4 6 4-6z" fill="#5B4BD6"/><ellipse cx="21" cy="22" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 21 22)"/><path class="deco-string" d="M30 69c7 14-7 24 1 36s-6 16-1 24"/></svg>
+        <svg class="deco-balloon deco-balloon--c" viewBox="0 0 60 130"><ellipse cx="30" cy="34" rx="24" ry="30" fill="url(#gBalCherry)"/><path d="M26 63l4 6 4-6z" fill="#A8264A"/><ellipse cx="21" cy="22" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 21 22)"/><path class="deco-string" d="M30 69c-6 12 6 22-1 34"/></svg>
+        <svg class="deco-star deco-star--a" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+        <svg class="deco-star deco-star--b" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+        <svg class="deco-star deco-star--c" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+        <svg class="deco-star deco-star--d" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+        <svg class="deco-heart deco-heart--a" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.4 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4c4.1 0 6 4.4 4.3 7.7C19.5 16.4 12 21 12 21z"/></svg>
+        <svg class="deco-heart deco-heart--b" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.4 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4c4.1 0 6 4.4 4.3 7.7C19.5 16.4 12 21 12 21z"/></svg>
+        <i class="deco-foil deco-foil--1"></i><i class="deco-foil deco-foil--2"></i><i class="deco-foil deco-foil--3"></i>
+        <i class="deco-foil deco-foil--4"></i><i class="deco-foil deco-foil--5"></i><i class="deco-foil deco-foil--6"></i>
+        <i class="deco-dot deco-dot--1"></i><i class="deco-dot deco-dot--2"></i><i class="deco-dot deco-dot--3"></i><i class="deco-dot deco-dot--4"></i>
+      </div>
+
+      <div class="cal">
+        <!-- left: greeting, countdown, call to action -->
+        <div class="cal__side">
+          <p class="cal__kicker" id="calKicker">Counting down to your day</p>
+          <p class="cal__eyebrow" data-bind="landing.eyebrow"></p>
+          <p class="cal__name" data-bind="name"></p>
+          <h1 class="cal__headline" data-bind="landing.title"></h1>
+          <p class="cal__sub" data-bind="landing.subtitle"></p>
+          <p class="cal__line" data-bind="landing.intro"></p>
+          <div class="countdown" id="countdown" role="timer" aria-label="Time left until November 20, 2026">
+            <div class="countdown__unit"><b data-unit="d">00</b><span>Days</span></div>
+            <div class="countdown__unit"><b data-unit="h">00</b><span>Hours</span></div>
+            <div class="countdown__unit"><b data-unit="m">00</b><span>Minutes</span></div>
+            <div class="countdown__unit"><b data-unit="s">00</b><span>Seconds</span></div>
+          </div>
+          <button class="btn btn--glow cal__btn" id="openGift" type="button">
+            <span data-bind="landing.button"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16v9H4zM2 7h20v4H2zM12 7v13M12 7c-2-4-7-4-6-1 1 2 6 1 6 1zm0 0c2-4 7-4 6-1-1 2-6 1-6 1z"/></svg>
+          </button>
+        </div>
+
+        <!-- right: the month -->
+        <div class="cal__main">
+          <div class="cal__head">
+            <h2 class="cal__title"><span class="cal__month">November</span> <span class="cal__year">2026</span></h2>
+            <span class="cal__no" aria-hidden="true">One special day · One special person</span>
+          </div>
+          <div class="cal__week" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <ol class="cal__grid" id="calGrid"></ol>
+          <div class="cal__caption">
+            <p class="cal__born">The day my favorite person was born</p>
+            <p class="cal__special">November 20 <i>•</i> Your Special Day</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav__mark" aria-label="Back to top">20</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#home">Home</a>
+      <a href="#birthday">Birthday</a>
+      <a href="#memories">Memories</a>
+      <a href="#letters">Letters</a>
+      <a href="#flowers">Flowers</a>
+      <a href="#song">Song</a>
+      <a href="#puzzle">Puzzle Game</a>
+      <a href="#surprise" class="nav__locked"><i class="lock" aria-hidden="true"></i>Final Surprise</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="menu" id="mobileMenu" aria-hidden="true">
+    <nav class="menu__links" aria-label="Sections">
+      <a href="#home"><small>01</small>Home</a>
+      <a href="#birthday"><small>02</small>Birthday</a>
+      <a href="#memories"><small>03</small>Memories</a>
+      <a href="#letters"><small>04</small>Letters</a>
+      <a href="#flowers"><small>05</small>Flowers</a>
+      <a href="#song"><small>06</small>Song</a>
+      <a href="#puzzle"><small>07</small>Puzzle Game</a>
+      <a href="#surprise" class="nav__locked"><small>08</small>Final Surprise <i class="lock" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ HOME ============ -->
+    <section id="home" class="cake-stage">
+      <div class="cake-stage__inner">
+        <p class="eyebrow eyebrow--index reveal" data-index="01">Today is all about my love</p>
+        <h2 class="cake-stage__title reveal" id="cakeWish"></h2>
+        <p class="cake-stage__hint reveal" data-bind="cake.hint"></p>
+
+        <div class="cake reveal" id="cake">
+          <div class="cake__halo" aria-hidden="true"></div>
+        </div>
+
+        <div class="cake-stage__status reveal" id="cakeStatus">
+          <p class="cake-stage__count"><b id="candleCount">20</b> candles still lit</p>
+          <p class="cake-stage__done" id="cakeDone" aria-live="polite"></p>
+          <div class="cake-stage__actions">
+            <button class="btn btn--glow" id="cakeGo" type="button"><span>Open your birthday page</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <button class="btn btn--outline" id="relight" type="button" hidden>Light them again</button>
+          </div>
+          <p class="cake-stage__tip">Or tap the cake itself.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BIRTHDAY CELEBRATION ============ -->
+    <section id="birthday" class="section bday">
+      <div class="container bday__grid">
+        <!-- his photo is the star: framed, zoomed in on him, surrounded by birthday details -->
+        <div class="bday__stage">
+          <div class="bday__flower" aria-hidden="true">
+            <div class="holo holo--pearl" data-holo="pearl"></div>
+          </div>
+          <figure class="bday__photo reveal">
+            <div class="polaroid polaroid--portrait">
+              <span class="tape tape--blue" aria-hidden="true"></span>
+              <div class="polaroid__img" id="birthdayPhoto"></div>
+            </div>
+          </figure>
+          <div class="bday__deco" aria-hidden="true">
+            <svg class="svg-defs" focusable="false">
+              <defs>
+                <linearGradient id="bdStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#BFEFFF"/><stop offset=".75" stop-color="#B9A2FF"/><stop offset="1" stop-color="#8FB0FF"/></linearGradient>
+                <radialGradient id="bdChrome" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".25" stop-color="#DCE7FF"/><stop offset=".6" stop-color="#8098D2"/><stop offset="1" stop-color="#2D3E7A"/></radialGradient>
+                <radialGradient id="bdViolet" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#F2EDFF"/><stop offset=".3" stop-color="#A98BFF"/><stop offset=".7" stop-color="#5B4BD6"/><stop offset="1" stop-color="#241E66"/></radialGradient>
+                <radialGradient id="bdCherry" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFE3EA"/><stop offset=".3" stop-color="#E0587C"/><stop offset=".7" stop-color="#A8264A"/><stop offset="1" stop-color="#4E0F25"/></radialGradient>
+                <radialGradient id="bdIce" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".3" stop-color="#BFF3FF"/><stop offset=".7" stop-color="#4FA8E8"/><stop offset="1" stop-color="#1B3E7A"/></radialGradient>
+              </defs>
+            </svg>
+            <div class="bd-twenty"><span>2</span><span>0</span></div>
+            <svg class="bd-balloon bd-balloon--a" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdChrome)"/><path d="M26 64l4 6 4-6z" fill="#8098D2"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(-18 20 21)"/><path d="M30 70c-8 16 8 28-1 42s7 20 1 36" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
+            <svg class="bd-balloon bd-balloon--b" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdViolet)"/><path d="M26 64l4 6 4-6z" fill="#5B4BD6"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 20 21)"/><path d="M30 70c8 16-8 28 1 42s-7 20-1 36" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
+            <svg class="bd-balloon bd-balloon--c" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdIce)"/><path d="M26 64l4 6 4-6z" fill="#4FA8E8"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".55" transform="rotate(-18 20 21)"/><path d="M30 70c-6 14 6 24-1 38" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
+            <svg class="bd-balloon bd-balloon--d" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdCherry)"/><path d="M26 64l4 6 4-6z" fill="#A8264A"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 20 21)"/><path d="M30 70c6 14-6 24 1 38" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
+            <svg class="bd-star bd-star--a" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+            <svg class="bd-star bd-star--b" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+            <svg class="bd-star bd-star--c" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+            <svg class="bd-star bd-star--d" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
+            <i class="bd-foil bd-foil--1"></i><i class="bd-foil bd-foil--2"></i><i class="bd-foil bd-foil--3"></i><i class="bd-foil bd-foil--4"></i>
+            <i class="bd-foil bd-foil--5"></i><i class="bd-foil bd-foil--6"></i><i class="bd-foil bd-foil--7"></i>
+            <span class="bd-tag">Birthday boy · 20</span>
+          </div>
+        </div>
+
+        <div class="bday__panel">
+          <p class="eyebrow eyebrow--light reveal">The birthday boy</p>
+          <h2 class="bday__title reveal" id="bdayTitle"></h2>
+          <p class="bday__tagline reveal" data-bind="birthday.tagline"></p>
+          <p class="bday__sign reveal">with love, <span data-bind="birthday.signature"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MEMORIES ============ -->
+    <section id="memories" class="section memories">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Our memories</p>
+          <h2 class="display reveal">Little moments, <em>kept.</em></h2>
+        </header>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ LETTERS ============ -->
+    <section id="letters" class="section letters">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Letters</p>
+          <h2 class="display reveal">Words I wrote <em>for you.</em></h2>
+          <p class="section-head__lede reveal">Five envelopes. Open them in any order.</p>
+        </header>
+        <div class="envelopes" id="envelopes"></div>
+      </div>
+    </section>
+
+    <!-- ============ FLOWERS ============ -->
+    <section id="flowers" class="section flowers">
+      <div class="flowers__glow flowers__glow--red" aria-hidden="true"></div>
+      <div class="flowers__glow flowers__glow--blue" aria-hidden="true"></div>
+      <canvas class="flowers__petals" id="petals" aria-hidden="true"></canvas>
+      <div class="container flowers__grid">
+        <div class="flowers__text">
+          <p class="eyebrow eyebrow--light reveal">Flowers</p>
+          <h2 class="display display--light reveal">A bouquet <em>just for you.</em></h2>
+          <button class="btn btn--glow reveal" id="bouquetBtn" type="button"><span data-bind="bouquet.button"></span></button>
+          <p class="flowers__message" id="bouquetMessage" data-bind="bouquet.message" aria-live="polite"></p>
+        </div>
+        <div class="bouquet-stage reveal">
+          <span class="tech-label tech-label--tl" aria-hidden="true">SPECIMEN 05</span>
+          <span class="tech-label tech-label--br" aria-hidden="true">FOR YOU, ALWAYS</span>
+          <div class="bouquet" id="bouquet" role="img" aria-label="A bouquet of deep red roses, white tulips, white calla lilies, small blue flowers and baby's breath, wrapped in black paper with a red ribbon"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SONG ============ -->
+    <section id="song" class="section song">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">A song for you</p>
+          <h2 class="display reveal">Every time it plays, <em>I think of you.</em></h2>
+          <p class="section-head__lede reveal" data-bind="song.note"></p>
+        </header>
+
+        <div class="player reveal" id="player">
+          <div class="player__deck">
+            <!-- turntable -->
+            <div class="turntable" aria-hidden="true">
+              <div class="turntable__platter">
+                <div class="vinyl">
+                  <div class="vinyl__label" id="vinylLabel"></div>
+                </div>
+                <div class="vinyl__sheen"></div>
+                <i class="vinyl__spindle"></i>
+              </div>
+              <svg class="tonearm" viewBox="0 0 80 320">
+                <defs>
+                  <linearGradient id="gArm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E9BC0"/><stop offset=".5" stop-color="#F2F6FF"/><stop offset="1" stop-color="#7C88AE"/></linearGradient>
+                  <radialGradient id="gPivot" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#9AA8CC"/><stop offset="1" stop-color="#3B4672"/></radialGradient>
+                </defs>
+                <rect x="30" y="0" width="20" height="16" rx="5" fill="#2A3463" stroke="rgba(200,220,255,.35)"/>
+                <circle cx="40" cy="40" r="24" fill="url(#gPivot)" stroke="rgba(255,255,255,.4)"/>
+                <circle cx="40" cy="40" r="8" fill="#1B2350"/>
+                <path d="M40 40 L40 238 L24 282" fill="none" stroke="url(#gArm)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <g transform="rotate(20 24 282)"><rect x="12" y="276" width="26" height="36" rx="4" fill="url(#gArm)"/><rect x="20" y="306" width="10" height="8" rx="2" fill="#6FE7FF"/></g>
+              </svg>
+              <span class="turntable__led"></span>
+              <span class="turntable__rpm">33 RPM · Side A</span>
+            </div>
+
+            <div class="player__meta">
+              <p class="player__now"><i class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span>Now playing</span></p>
+              <h3 class="player__title" data-bind="song.title"></h3>
+              <p class="player__artist" data-bind="song.artist"></p>
+            </div>
+
+            <div class="player__progress">
+              <span class="player__time" id="songTime">0:00</span>
+              <div class="seek" id="seek" role="slider" tabindex="0" aria-label="Song position" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+                <i class="seek__fill" id="seekFill"></i><b class="seek__knob" id="seekKnob"></b>
+              </div>
+              <span class="player__time" id="songDur">0:00</span>
+            </div>
+
+            <div class="player__controls">
+              <button class="pbtn" id="songBack" type="button" aria-label="Back 10 seconds"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/><text x="12" y="15.5" text-anchor="middle">10</text></svg></button>
+              <button class="pbtn pbtn--play" id="songPlay" type="button" aria-label="Play">
+                <svg class="pbtn__play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg class="pbtn__pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+              </button>
+              <button class="pbtn" id="songFwd" type="button" aria-label="Forward 10 seconds"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4h-4"/><text x="12" y="15.5" text-anchor="middle">10</text></svg></button>
+            </div>
+
+            <p class="player__status" id="songStatus" aria-live="polite"></p>
+
+            <div class="player__source" id="songSource">
+              <div class="player__yt"><div id="ytPlayer"></div></div>
+              <p><span>Playing from</span>YouTube · Official Lyric Video</p>
+            </div>
+          </div>
+
+          <div class="lyrics">
+            <p class="lyrics__label">Lyrics</p>
+            <div class="lyrics__scroll" id="lyricsScroll">
+              <ol class="lyrics__list" id="lyricsList"></ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PUZZLE ============ -->
+    <section id="puzzle" class="section game">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Puzzle game</p>
+          <h2 class="display reveal" data-bind="puzzle.title"></h2>
+          <p class="section-head__lede reveal" data-bind="puzzle.intro"></p>
+        </header>
+
+        <div class="game__layout reveal">
+          <div class="game__board-wrap">
+            <div class="board" id="board" aria-label="Sliding puzzle board"></div>
+            <div class="board__overlay" id="boardOverlay">
+              <p class="board__overlay-title">Ready?</p>
+              <p>Pick a difficulty, then press start.</p>
+            </div>
+          </div>
+
+          <aside class="game__panel">
+            <div class="panel-block">
+              <p class="panel-label">Difficulty</p>
+              <div class="chips" role="radiogroup" aria-label="Difficulty">
+                <button class="chip" type="button" role="radio" aria-checked="false" data-size="3">Easy <small>3×3</small></button>
+                <button class="chip" type="button" role="radio" aria-checked="true" data-size="4">Medium <small>4×4</small></button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-size="5">Hard <small>5×5</small></button>
+              </div>
+            </div>
+
+            <div class="stats">
+              <div class="stat"><span class="panel-label">Moves</span><strong id="moves">0</strong></div>
+              <div class="stat"><span class="panel-label">Time</span><strong id="timer">0:00</strong></div>
+              <div class="stat"><span class="panel-label">In place</span><strong id="progressText">0%</strong></div>
+            </div>
+            <div class="progress"><i id="progressBar"></i></div>
+
+            <div class="game__actions">
+              <button class="btn btn--red" id="startBtn" type="button">Start</button>
+              <button class="btn btn--outline" id="peekBtn" type="button" aria-pressed="false" disabled>Peek</button>
+            </div>
+
+            <details class="howto">
+              <summary>How to play</summary>
+              <ul>
+                <li>Tap or click a tile next to the empty space to slide it in.</li>
+                <li>Tap a tile in the same row or column as the gap to slide the whole line.</li>
+                <li>On a keyboard, use the arrow keys to move tiles into the gap.</li>
+                <li>Rebuild the photo — the empty corner is bottom-right.</li>
+              </ul>
+            </details>
+          </aside>
+        </div>
+
+        <div class="solved" id="solvedCard" hidden>
+          <h3 class="solved__title" data-bind="puzzle.solvedTitle"></h3>
+          <p class="solved__text" data-bind="puzzle.solvedText"></p>
+          <p class="solved__stats" id="solvedStats"></p>
+          <button class="btn btn--glow" id="unlockBtn" type="button">Unlock your final surprise</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL SURPRISE (gate) ============ -->
+    <section id="surprise" class="section gate">
+      <div class="container gate__inner">
+        <div class="holo holo--gate" data-holo="head" aria-hidden="true"></div>
+        <div class="gate__card">
+          <div class="gate__icon"><i class="lock lock--xl" aria-hidden="true"></i></div>
+          <p class="eyebrow eyebrow--light">Final surprise</p>
+          <h2 class="display display--light gate__title" id="gateTitle">Still locked.</h2>
+          <p class="gate__text" id="gateText">Finish the puzzle to unlock what's waiting here.</p>
+          <a class="btn btn--outline-light" id="gateBtn" href="#puzzle">Go to the puzzle</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Made with love for <span data-bind="name"></span> · by <span data-bind="from"></span> · <span id="year"></span></p>
+    </footer>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <button class="icon-btn lightbox__close" data-close type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="icon-btn lightbox__prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="lightbox__stage"><div class="lightbox__frame" id="lightboxFrame"></div></div>
+    <button class="icon-btn lightbox__next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <!-- ============ LETTER ============ -->
+  <div class="letter-modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterTitle" aria-hidden="true">
+    <div class="letter-modal__backdrop" data-close></div>
+    <article class="paper" id="paper">
+      <button class="icon-btn paper__close" data-close type="button" aria-label="Close letter"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <p class="paper__num" id="letterNum"></p>
+      <h3 class="paper__title" id="letterTitle"></h3>
+      <div class="paper__body" id="letterBody"></div>
+      <p class="paper__sign" id="letterSign"></p>
+      <button class="paper__back" data-close type="button">← Back to the letters</button>
+    </article>
+  </div>
+
+  <!-- ============ FINAL SURPRISE PAGE ============ -->
+  <div class="finale" id="finale" role="dialog" aria-modal="true" aria-labelledby="finaleTitle" aria-hidden="true">
+    <canvas class="finale__fx" id="finaleFx" aria-hidden="true"></canvas>
+    <div class="finale__light finale__light--red" aria-hidden="true"></div>
+    <div class="finale__light finale__light--blue" aria-hidden="true"></div>
+    <div class="holo holo--finale" data-holo="guides" aria-hidden="true"></div>
+    <button class="icon-btn finale__close" id="finaleClose" type="button" aria-label="Close the surprise"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="finale__inner">
+      <p class="eyebrow eyebrow--light finale__step">Unlocked</p>
+      <h2 class="finale__title finale__step" id="finaleTitle" data-bind="surprise.title"></h2>
+      <div class="finale__photo finale__step">
+        <div class="polaroid polaroid--portrait polaroid--glow">
+          <span class="tape tape--blue" aria-hidden="true"></span>
+          <div class="polaroid__img" id="finalePhoto"></div>
+        </div>
+      </div>
+      <article class="finale__letter finale__step">
+        <div id="finaleLetter"></div>
+        <p class="finale__sign" data-bind="surprise.signature"></p>
+      </article>
+      <p class="finale__ending finale__step" data-bind="surprise.ending"></p>
+      <button class="btn btn--outline-light finale__step" id="finaleReplay" type="button">Celebrate again</button>
+    </div>
+  </div>
+
+  <script src="js/content.js"></script>
+  <script src="js/holo.js"></script>
+  <script src="js/bouquet.js"></script>
+  <script src="js/puzzle.js"></script>
+  <!-- birthday music toggle (appears once the surprise is opened) -->
+  <button class="music-pill" id="musicToggle" type="button" aria-pressed="false" aria-label="Play the birthday music" hidden>
+    <span class="music-pill__eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span>
+    <span class="music-pill__label">Happy Birthday</span>
+    <svg class="music-pill__icon music-pill__icon--on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+    <svg class="music-pill__icon music-pill__icon--off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6M21 9l-5 6"/></svg>
+  </button>
+
+  <script src="js/music.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cake.js"></script>
+  <script src="js/song.js"></script>
+</body>
+</html>
