@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Sora:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,600&family=Pinyon+Script&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=5">
 </head>
 <body class="is-locked">
 
@@ -176,46 +176,60 @@
 
     <!-- ============ BIRTHDAY CELEBRATION ============ -->
     <section id="birthday" class="section bday">
+      <!-- atmosphere: crystal blooms, light trails, shards — all decorative -->
+      <div class="bday__bg" aria-hidden="true">
+        <div class="bday__bloom bday__bloom--tl"><div class="holo" data-holo></div></div>
+        <div class="bday__bloom bday__bloom--r"><div class="holo" data-holo="head"></div></div>
+        <div class="bday__bloom bday__bloom--br"><div class="holo" data-holo="head"></div></div>
+        <svg class="bday__trails" viewBox="0 0 1600 900" preserveAspectRatio="none" focusable="false">
+          <defs>
+            <linearGradient id="bdTrail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9DFFF" stop-opacity="0"/><stop offset=".45" stop-color="#EDF4FF" stop-opacity=".55"/><stop offset="1" stop-color="#B7A8FF" stop-opacity="0"/></linearGradient>
+          </defs>
+          <path d="M-40 560 C 180 420, 420 380, 700 430" stroke="url(#bdTrail)"/>
+          <path d="M60 860 C 420 760, 760 800, 1000 900" stroke="url(#bdTrail)"/>
+          <path d="M1180 900 C 1340 760, 1500 720, 1640 760" stroke="url(#bdTrail)"/>
+        </svg>
+        <svg class="bd-shard bd-shard--1" viewBox="0 0 40 80"><path d="M20 2C34 22 34 58 20 78 6 58 6 22 20 2Z"/><path d="M20 2V78"/></svg>
+        <svg class="bd-shard bd-shard--2" viewBox="0 0 40 80"><path d="M20 2C34 22 34 58 20 78 6 58 6 22 20 2Z"/><path d="M20 2V78"/></svg>
+        <svg class="bd-shard bd-shard--3" viewBox="0 0 40 80"><path d="M20 2C34 22 34 58 20 78 6 58 6 22 20 2Z"/><path d="M20 2V78"/></svg>
+        <svg class="bd-shard bd-shard--4" viewBox="0 0 40 80"><path d="M20 2C34 22 34 58 20 78 6 58 6 22 20 2Z"/><path d="M20 2V78"/></svg>
+        <svg class="bd-spark bd-spark--1" viewBox="0 0 24 24"><path d="M12 0C12.6 8 16 11.4 24 12 16 12.6 12.6 16 12 24 11.4 16 8 12.6 0 12 8 11.4 11.4 8 12 0Z"/></svg>
+        <svg class="bd-spark bd-spark--2" viewBox="0 0 24 24"><path d="M12 0C12.6 8 16 11.4 24 12 16 12.6 12.6 16 12 24 11.4 16 8 12.6 0 12 8 11.4 11.4 8 12 0Z"/></svg>
+        <svg class="bd-spark bd-spark--3" viewBox="0 0 24 24"><path d="M12 0C12.6 8 16 11.4 24 12 16 12.6 12.6 16 12 24 11.4 16 8 12.6 0 12 8 11.4 11.4 8 12 0Z"/></svg>
+      </div>
+
       <div class="container bday__grid">
-        <!-- his photo is the star: framed, zoomed in on him, surrounded by birthday details -->
+        <!-- left: his photo, framed like a polaroid on a pane of glass -->
         <div class="bday__stage">
-          <div class="bday__flower" aria-hidden="true">
-            <div class="holo holo--pearl" data-holo="pearl"></div>
-          </div>
+          <span class="bday__pane" aria-hidden="true"></span>
           <figure class="bday__photo reveal">
             <div class="polaroid polaroid--portrait">
               <span class="tape tape--blue" aria-hidden="true"></span>
               <div class="polaroid__img" id="birthdayPhoto"></div>
             </div>
           </figure>
-          <div class="bday__deco" aria-hidden="true">
-            <svg class="svg-defs" focusable="false">
-              <defs>
-                <linearGradient id="bdStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#BFEFFF"/><stop offset=".75" stop-color="#B9A2FF"/><stop offset="1" stop-color="#8FB0FF"/></linearGradient>
-                <radialGradient id="bdChrome" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".25" stop-color="#DCE7FF"/><stop offset=".6" stop-color="#8098D2"/><stop offset="1" stop-color="#2D3E7A"/></radialGradient>
-                <radialGradient id="bdViolet" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#F2EDFF"/><stop offset=".3" stop-color="#A98BFF"/><stop offset=".7" stop-color="#5B4BD6"/><stop offset="1" stop-color="#241E66"/></radialGradient>
-                <radialGradient id="bdCherry" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFE3EA"/><stop offset=".3" stop-color="#E0587C"/><stop offset=".7" stop-color="#A8264A"/><stop offset="1" stop-color="#4E0F25"/></radialGradient>
-                <radialGradient id="bdIce" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".3" stop-color="#BFF3FF"/><stop offset=".7" stop-color="#4FA8E8"/><stop offset="1" stop-color="#1B3E7A"/></radialGradient>
-              </defs>
-            </svg>
-            <div class="bd-twenty"><span>2</span><span>0</span></div>
-            <svg class="bd-balloon bd-balloon--a" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdChrome)"/><path d="M26 64l4 6 4-6z" fill="#8098D2"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(-18 20 21)"/><path d="M30 70c-8 16 8 28-1 42s7 20 1 36" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
-            <svg class="bd-balloon bd-balloon--b" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdViolet)"/><path d="M26 64l4 6 4-6z" fill="#5B4BD6"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 20 21)"/><path d="M30 70c8 16-8 28 1 42s-7 20-1 36" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
-            <svg class="bd-balloon bd-balloon--c" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdIce)"/><path d="M26 64l4 6 4-6z" fill="#4FA8E8"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".55" transform="rotate(-18 20 21)"/><path d="M30 70c-6 14 6 24-1 38" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
-            <svg class="bd-balloon bd-balloon--d" viewBox="0 0 60 150"><ellipse cx="30" cy="34" rx="25" ry="31" fill="url(#bdCherry)"/><path d="M26 64l4 6 4-6z" fill="#A8264A"/><ellipse cx="20" cy="21" rx="5" ry="10" fill="#fff" opacity=".5" transform="rotate(-18 20 21)"/><path d="M30 70c6 14-6 24 1 38" fill="none" stroke="rgba(220,235,255,.6)"/></svg>
-            <svg class="bd-star bd-star--a" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
-            <svg class="bd-star bd-star--b" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
-            <svg class="bd-star bd-star--c" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
-            <svg class="bd-star bd-star--d" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z"/></svg>
-            <i class="bd-foil bd-foil--1"></i><i class="bd-foil bd-foil--2"></i><i class="bd-foil bd-foil--3"></i><i class="bd-foil bd-foil--4"></i>
-            <i class="bd-foil bd-foil--5"></i><i class="bd-foil bd-foil--6"></i><i class="bd-foil bd-foil--7"></i>
-            <span class="bd-tag">Birthday boy · 20</span>
-          </div>
+          <svg class="bday__orbit" viewBox="0 0 600 300" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="bdOrbit" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#EDF4FF" stop-opacity=".9"/><stop offset=".5" stop-color="#A9DFFF" stop-opacity=".25"/><stop offset="1" stop-color="#B7A8FF" stop-opacity=".7"/></linearGradient>
+            </defs>
+            <ellipse cx="300" cy="150" rx="292" ry="78" transform="rotate(-8 300 150)" stroke="url(#bdOrbit)"/>
+          </svg>
+          <div class="bday__twenty" aria-hidden="true">20</div>
+          <p class="bday__caption">Birthday boy · 20</p>
         </div>
 
+        <!-- right: the message, on a dark glass panel -->
         <div class="bday__panel">
+          <svg class="bday__swoosh" viewBox="0 0 520 240" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="bdSwoosh" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#A9DFFF" stop-opacity="0"/><stop offset=".5" stop-color="#EDF4FF" stop-opacity=".7"/><stop offset="1" stop-color="#B7A8FF" stop-opacity=".2"/></linearGradient>
+            </defs>
+            <path d="M8 222 C 40 140, 260 70, 470 34" stroke="url(#bdSwoosh)"/>
+            <path class="bday__swoosh-star" d="M470 18C470.6 30 474 33.4 486 34 474 34.6 470.6 38 470 50 469.4 38 466 34.6 454 34 466 33.4 469.4 30 470 18Z"/>
+          </svg>
           <p class="eyebrow eyebrow--light reveal">The birthday boy</p>
           <h2 class="bday__title reveal" id="bdayTitle"></h2>
+          <div class="bday__rule reveal" aria-hidden="true"><span></span></div>
           <p class="bday__tagline reveal" data-bind="birthday.tagline"></p>
           <p class="bday__sign reveal">with love, <span data-bind="birthday.signature"></span></p>
         </div>

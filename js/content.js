@@ -35,7 +35,7 @@ window.GIFT = {
   birthday: {
     title: "Happy 20th Birthday",
     photo: "assets/images/memories/front.jpg", // ✎ his photo (portrait 4:5 works best)
-    photoZoom: 2,                       // ✎ how far to zoom in on him (1 = whole photo)
+    photoZoom: 1.3,                       // ✎ how far to zoom in on him (1 = whole photo)
     photoFocus: "53% 60%",              // ✎ where he is in the photo (left% top%) — the zoom centres here
     tagline: "Twenty years of you — and I get to celebrate every one that comes next.", // ✎ one short line
     signature: "Vencee"                 // ✎
