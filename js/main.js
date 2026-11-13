@@ -618,10 +618,10 @@
   paragraphs($("#finaleLetter"), G.surprise.letter);
 
   const gateBtn = $("#gateBtn");
-  function unlock() {
+  function unlock(persist = true) {
     if (document.body.classList.contains("is-unlocked")) return;
     document.body.classList.add("is-unlocked");
-    store.set(UNLOCK_KEY, "1");
+    if (persist) store.set(UNLOCK_KEY, "1");
     $("#gateTitle").textContent = "Your surprise is ready.";
     $("#gateText").textContent = "You solved the puzzle. Whatever's behind this door is yours.";
     gateBtn.textContent = "Open your final surprise";
@@ -630,6 +630,17 @@
   }
   if (store.get(UNLOCK_KEY) === "1") unlock();
   else $$(".nav__locked").forEach((a) => a.setAttribute("aria-label", "Final Surprise (locked)"));
+
+  // ✎ testing shortcut: add ?preview=vencee to the URL to skip the puzzle.
+  // Unlocks for this visit only (nothing is saved) and opens the final surprise right after the gift is opened.
+  if (new URLSearchParams(location.search).get("preview") === "vencee") {
+    unlock(false);
+    const openAfterIntro = () => setTimeout(openFinale, reduceMotion ? 100 : 900);
+    if (intro.classList.contains("is-open")) openAfterIntro();
+    else new MutationObserver((_, obs) => {
+      if (intro.classList.contains("is-open")) { obs.disconnect(); openAfterIntro(); }
+    }).observe(intro, { attributes: true, attributeFilter: ["class"] });
+  }
 
   gateBtn.addEventListener("click", (e) => {
     if (!document.body.classList.contains("is-unlocked")) return;    // locked: link scrolls to the puzzle
