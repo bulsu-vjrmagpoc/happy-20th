@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Sora:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,600&family=Pinyon+Script&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=7">
+  <link rel="stylesheet" href="css/styles.css?v=8">
 </head>
 <body class="is-locked">
 
@@ -271,12 +271,14 @@
       <div class="container flowers__grid">
         <div class="flowers__text">
           <p class="eyebrow eyebrow--light reveal">Flowers</p>
-          <h2 class="display display--light reveal">A bouquet <em>just for you.</em></h2>
+          <h2 class="display display--light reveal">A bouquet <em>just<br> for you.</em></h2>
           <button class="btn btn--glow reveal" id="bouquetBtn" type="button"><span data-bind="bouquet.button"></span></button>
+          <div class="flowers__rule" aria-hidden="true"><span></span></div>
           <p class="flowers__message" id="bouquetMessage" data-bind="bouquet.message" aria-live="polite"></p>
         </div>
         <div class="bouquet-stage reveal">
-          <span class="tech-label tech-label--tl" aria-hidden="true">SPECIMEN 05</span>
+          <span class="tech-label tech-label--tl" aria-hidden="true">NOVEMBER 20</span>
+          <span class="bouquet-stage__rule" aria-hidden="true"><span></span></span>
           <span class="tech-label tech-label--br" aria-hidden="true">FOR YOU, ALWAYS</span>
           <div class="bouquet" id="bouquet" role="img" aria-label="A bouquet of deep red roses, white tulips, white calla lilies, small blue flowers and baby's breath, wrapped in black paper with a red ribbon"></div>
         </div>
@@ -286,10 +288,9 @@
     <!-- ============ SONG ============ -->
     <section id="song" class="section song">
       <div class="container">
-        <header class="section-head">
-          <p class="eyebrow reveal">A song for you</p>
-          <h2 class="display reveal">Every time it plays, <em>I think of you.</em></h2>
-          <p class="section-head__lede reveal" data-bind="song.note"></p>
+        <header class="song-head">
+          <h2 class="sr-only">A song for you</h2>
+          <p class="song-head__line reveal"><span aria-hidden="true"></span>Because you&rsquo;re the reason I keep smiling.<span aria-hidden="true"></span></p>
         </header>
 
         <div class="player reveal" id="player">
@@ -350,7 +351,7 @@
           </div>
 
           <div class="lyrics">
-            <p class="lyrics__label">Lyrics</p>
+            <p class="lyrics__label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Lyrics</p>
             <div class="lyrics__scroll" id="lyricsScroll">
               <ol class="lyrics__list" id="lyricsList"></ol>
             </div>
