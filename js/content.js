@@ -185,14 +185,11 @@ window.GIFT = {
   /* ---------- Final surprise (unlocked by the puzzle) ---------- */
   surprise: {
     title: "And this is my little surprise for you.",
-    photo: null,                        // ✎ the hidden photo, e.g. "assets/images/surprise/us.jpg"
+    photo: "assets/images/surprise/us.jpg", // ✎ the hidden photo
     letter: [                           // ✎ your special letter
-      "Langga,",
-      "You made it to the very end, and I'm so glad you did, because this part is the one I wanted you to see most.",
-      "Out of all the things I could give you for your birthday, I wanted to give you something that shows how much you mean to me. Every page, every photo, every letter here was made thinking of you.",
-      "You are my comfort, my favorite person, my home. Loving you is the easiest thing I've ever done, and being loved by you is the best thing that's ever happened to me.",
-      "Thank you for every day you've given me. Here's to your twentieth year, and to every year after, with me right beside you.",
-      "I love you, always."
+      "Wowwww! U made it to the very end, and im so glad u did and sana naman ay hindi ka nafrustrate love? So this is the final part of my pakulo hehe, i hope magustuhan mo lahat ng gift ko sayo love pls! Grabe ganito pala pag walang pera, biglang nagiging crafty! BWHABAHABAHAH kidding aside, alam ko namang magiging masaya ka here sa lahat ng ito, pero hayaan mo akong bumawi pag ako naman ang nagkaroon hehe. di ko man mapromise kung kelan pero sana makabawi me, hay grabe naiiyak aq while writing this, today is nov 13, and chinat ko sayo na “mahirap walang pera” grabe super! and if naweweirdohan ka kung bakit payag ako ng payag sa lahat ng alis mo is dahil dito syempre! dahil busy ako gumawa, magprompt, magcraft, gumawa ng letter, lahat! basta busy aq BWHABWHABABBA.",
+      "Super hirap pa ng adjustments here sa house dahil sa nangyayari, kaya medyo di aq makagalaw ng maayos, pero shempre gagawan ko ng paraan for u! and love sana di ka magbago kung ano ka ngayon:(( pls dont be like my dad:(( ayaw ko matakot sayo, ayaw ko na kapag may mali akong nagawa is matatakot ako sayo, pag aalis tayo tapos may nakalimutan ako ayaw kong matakot na sabihin sayo. And love help me din na wag kang matakot sakin, kumbaga ayoko din na bad ako sayo:(( kaya pls help me. Gusto ko sobrang soft lang natin sa isa’t-isa. Gusto ko ikaw na! Pls don’t let us to be separated, malulungkot me. Di ko man nasasabi palagi pero mahal na mahal kita! ikaw lang sapat na, sobra-sobra pa. If nagkukulang man ako mag-assure sayo palagi, sorry. Hindi din kasi iyon ang love language ko, alam mo na namang ako ay more on physical touch hihi, kaya pls hold my hand (HOLD ME) lagiiii, gusto ko yun gustong-gusto!!! And to end this, I want u to know na grateful ako sa existence mo! Salamat kasi nandyan ka palagi, yung dating mabigat ngayon ay gumagaan, and shempre dahil din ito kay Lord kaya love pls pilitin nating laging kasama sa routine ang pagsimba ha. I love you so much Langga, Ga, Love, Baby, Harryboy, bebe, and many calls signs to come hihihi<3",
+      "You are my comfort, my favorite person, my home. Loving you is the easiest thing I've ever done, and being loved by you is the best thing that's ever happened to me."
     ],
     signature: "Vencee",                // ✎
     ending: "Happy 20th Birthday. I hope you never forget how special you are."
